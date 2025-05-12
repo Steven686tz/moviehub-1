@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamHub - Movies</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold">StreamHub</h1>
+    <nav>
+      <ul class="flex space-x-6">
+        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="movies.html" class="text-yellow-400 font-semibold">Movies</a></li>
+        <li><a href="series.html" class="hover:text-yellow-400">Series</a></li>
+        <li><a href="profile.html" class="hover:text-yellow-400">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Filters -->
+  <section class="p-6">
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select id="genreFilter" class="bg-gray-800 text-white px-4 py-2 rounded">
+        <option value="all">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Thriller">Thriller</option>
+      </select>
+      <select id="yearFilter" class="bg-gray-800 text-white px-4 py-2 rounded">
+        <option value="all">All Years</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+      </select>
+    </div>
+
+    <!-- Movie Grid -->
+    <div id="movieGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Movies will be injected here -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center p-4 mt-8">
+    <p>&copy; 2025 StreamHub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const movies = [
+      {
+        title: "Inception",
+        genre: "Action",
+        year: "2024",
+        poster: "https://via.placeholder.com/300x450?text=Inception"
+      },
+      {
+        title: "The Hangover",
+        genre: "Comedy",
+        year: "2023",
+        poster: "https://via.placeholder.com/300x450?text=The+Hangover"
+      },
+      {
+        title: "The Godfather",
+        genre: "Drama",
+        year: "2025",
+        poster: "https://via.placeholder.com/300x450?text=The+Godfather"
+      },
+      {
+        title: "The Conjuring",
+        genre: "Thriller",
+        year: "2024",
+        poster: "https://via.placeholder.com/300x450?text=The+Conjuring"
+      }
+    ];
+
+    function displayMovies(filterGenre = "all", filterYear = "all") {
+      const grid = document.getElementById("movieGrid");
+      grid.innerHTML = "";
+
+      const filtered = movies.filter(movie => {
+        return (filterGenre === "all" || movie.genre === filterGenre) &&
+               (filterYear === "all" || movie.year === filterYear);
+      });
+
+      filtered.forEach(movie => {
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 rounded-lg shadow-lg overflow-hidden";
+        card.innerHTML = `
+          <img src="${movie.poster}" alt="${movie.title}" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h3 class="text-lg font-bold">${movie.title}</h3>
+            <p class="text-sm text-gray-400">${movie.genre} | ${movie.year}</p>
+            <button class="mt-2 bg-yellow-500 text-black font-bold px-4 py-2 rounded hover:bg-yellow-600">Play</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById("genreFilter").addEventListener("change", e => {
+      displayMovies(e.target.value, document.getElementById("yearFilter").value);
+    });
+
+    document.getElementById("yearFilter").addEventListener("change", e => {
+      displayMovies(document.getElementById("genreFilter").value, e.target.value);
+    });
+
+    // Initial load
+    displayMovies();
+  </script>
+</body>
+</html>

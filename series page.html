@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamHub - Series</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold">StreamHub</h1>
+    <nav>
+      <ul class="flex space-x-6">
+        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="movies.html" class="hover:text-yellow-400">Movies</a></li>
+        <li><a href="series.html" class="text-yellow-400 font-semibold">Series</a></li>
+        <li><a href="profile.html" class="hover:text-yellow-400">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Filters -->
+  <section class="p-6">
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select id="genreFilter" class="bg-gray-800 text-white px-4 py-2 rounded">
+        <option value="all">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Thriller">Thriller</option>
+      </select>
+      <select id="yearFilter" class="bg-gray-800 text-white px-4 py-2 rounded">
+        <option value="all">All Years</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+      </select>
+    </div>
+
+    <!-- Series Grid -->
+    <div id="seriesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Series will be injected here -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center p-4 mt-8">
+    <p>&copy; 2025 StreamHub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const series = [
+      {
+        title: "Reacher",
+        genre: "Action",
+        year: "2025",
+        poster: "https://via.placeholder.com/300x450?text=Reacher"
+      },
+      {
+        title: "Friends",
+        genre: "Comedy",
+        year: "2023",
+        poster: "https://via.placeholder.com/300x450?text=Friends"
+      },
+      {
+        title: "Breaking Bad",
+        genre: "Drama",
+        year: "2024",
+        poster: "https://via.placeholder.com/300x450?text=Breaking+Bad"
+      },
+      {
+        title: "You",
+        genre: "Thriller",
+        year: "2025",
+        poster: "https://via.placeholder.com/300x450?text=You"
+      }
+    ];
+
+    function displaySeries(filterGenre = "all", filterYear = "all") {
+      const grid = document.getElementById("seriesGrid");
+      grid.innerHTML = "";
+
+      const filtered = series.filter(item => {
+        return (filterGenre === "all" || item.genre === filterGenre) &&
+               (filterYear === "all" || item.year === filterYear);
+      });
+
+      filtered.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 rounded-lg shadow-lg overflow-hidden";
+        card.innerHTML = `
+          <img src="${item.poster}" alt="${item.title}" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h3 class="text-lg font-bold">${item.title}</h3>
+            <p class="text-sm text-gray-400">${item.genre} | ${item.year}</p>
+            <button class="mt-2 bg-yellow-500 text-black font-bold px-4 py-2 rounded hover:bg-yellow-600">Play</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById("genreFilter").addEventListener("change", e => {
+      displaySeries(e.target.value, document.getElementById("yearFilter").value);
+    });
+
+    document.getElementById("yearFilter").addEventListener("change", e => {
+      displaySeries(document.getElementById("genreFilter").value, e.target.value);
+    });
+
+    // Initial load
+    displaySeries();
+  </script>
+</body>
+</html>

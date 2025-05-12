@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamHub - Series</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold">StreamHub</h1>
+    <nav>
+      <ul class="flex space-x-6">
+        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="movies.html" class="hover:text-yellow-400">Movies</a></li>
+        <li><a href="#" class="text-yellow-400">Series</a></li>
+        <li><a href="#" class="hover:text-yellow-400">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Filter/Search Section -->
+  <section class="p-6 bg-gray-800">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <input type="text" placeholder="Search series..." class="w-full md:w-1/2 p-2 rounded bg-gray-700 text-white placeholder-gray-400">
+      <select class="p-2 rounded bg-gray-700 text-white">
+        <option>All Genres</option>
+        <option>Action</option>
+        <option>Drama</option>
+        <option>Comedy</option>
+        <option>Horror</option>
+      </select>
+      <select class="p-2 rounded bg-gray-700 text-white">
+        <option>Sort by</option>
+        <option>Newest</option>
+        <option>Top Rated</option>
+        <option>Most Popular</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Series Grid -->
+  <section class="p-6">
+    <h2 class="text-2xl font-semibold mb-4">All Series</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Sample series cards -->
+      <div class="bg-gray-700 rounded shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/300x450" alt="Series Poster" class="w-full">
+        <div class="p-2">
+          <h4 class="font-bold">Series Title</h4>
+          <p class="text-sm text-gray-400">Drama</p>
+        </div>
+      </div>
+      <!-- Repeat for more series cards -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center p-4 mt-8">
+    <p>&copy; 2025 StreamHub. All rights reserved.</p>
+  </footer>
+</body>
+</html>

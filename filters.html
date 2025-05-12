@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamHub - Movies</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold">StreamHub</h1>
+    <nav>
+      <ul class="flex space-x-6">
+        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="movies.html" class="text-yellow-400 font-semibold">Movies</a></li>
+        <li><a href="series.html" class="hover:text-yellow-400">Series</a></li>
+        <li><a href="profile.html" class="hover:text-yellow-400">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Filters -->
+  <section class="p-6">
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select class="bg-gray-800 text-white px-4 py-2 rounded">
+        <option>All Genres</option>
+        <option>Action</option>
+        <option>Comedy</option>
+        <option>Drama</option>
+        <option>Thriller</option>
+      </select>
+      <select class="bg-gray-800 text-white px-4 py-2 rounded">
+        <option>All Years</option>
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+      </select>
+    </div>
+
+    <!-- Movie Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <img src="https://via.placeholder.com/300x450" alt="Movie Poster" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-lg font-bold">Movie Title</h3>
+          <p class="text-sm text-gray-400">Action | 2024</p>
+          <button class="mt-2 bg-yellow-500 text-black font-bold px-4 py-2 rounded hover:bg-yellow-600">Play</button>
+        </div>
+      </div>
+      <!-- Add more movie cards as needed -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center p-4 mt-8">
+    <p>&copy; 2025 StreamHub. All rights reserved.</p>
+  </footer>
+</body>
+</html>
